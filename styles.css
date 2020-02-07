@@ -1,6 +1,6 @@
 body{
     background-color:#FFBFF8;
-    font-family:Courier, Verdana, Georgia;
+    font-family:Courier, Verdana, Georgia ;
     overflow: scroll;
     padding:50px;
     font-size: 20px;
@@ -13,4 +13,9 @@ form{
 }
 input{
     margin:10px;
+}
+
+#submit{
+    font-size:20px;
+    border-radius:7px;
 }
