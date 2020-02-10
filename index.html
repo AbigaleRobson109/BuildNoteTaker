@@ -12,62 +12,33 @@ Error checking
     <html lang="en" dir="ltr">
         <head>
             <meta charset="utf-8">
-            <link rel="stylesheet" type="text/css" href="styles.css">
-            <title></title>
+            <title>Remember Your Groceries</title>
 
-            <script>
-                window.addEventListener("DOMContentLoaded",()=>{
+<style>
+    body{
+    background-color:#FFBFF8;
+    font-family:Courier, Verdana, Georgia ;
+    overflow: scroll;
+    padding:50px;
+    font-size: 20px;
+    align-items: center;
+}
+form{
+    background-color: #E3BBFA;
+    padding: 25px;
+    display:inline-block;
+    border-radius:25px;
+}
+input{
+    margin:10px;
+}
 
-                    const bills = document.getElementById("bills");
-                    //bills.style.backgroundColor = "white";
+#submit{
+    font-size:20px;
+    border-radius:7px;
+}
+</style>
 
-                    bills.addEventListener("click", e=>{
-                        var question = document.createTextNode("What type of Bill was it?\n");
-                        document.getElementById("billExtend").appendChild(question);
-
-                        //create Insruance radio with correcposing text
-                        var insurance = document.createElement("INPUT");
-                        var text1 = document.createTextNode("Insurance");
-                        insurance.setAttribute("type","radio");
-                        insurance.setAttribute("value", "Insurance");
-                        insurance.setAttribute("name", "billType");
-                        document.getElementById("billExtend").appendChild(insurance);
-                        document.getElementById("billExtend").appendChild(text1);
-
-
-                        //create Utilities radio with correcposing text
-                        var utilities = document.createElement("INPUT");
-                        var text2 = document.createTextNode("Utilities");
-                        utilities.setAttribute("type","radio");
-                        utilities.setAttribute("value", "Utilities");
-                        utilities.setAttribute("name", "billType");
-                        document.getElementById("billExtend").appendChild(utilities);
-                        document.getElementById("billExtend").appendChild(text2);
-
-
-                        //create Rent radio with correcposing text
-                        var rent = document.createElement("INPUT");
-                        var text3 = document.createTextNode("Rent");
-                        rent.setAttribute("type","radio");
-                        rent.setAttribute("value", "Rent");
-                        rent.setAttribute("name", "billType");
-                        document.getElementById("billExtend").appendChild(rent);
-                        document.getElementById("billExtend").appendChild(text3);
-
-
-                        //create Other radio with correcposing text
-                        var other = document.createElement("INPUT");
-                        var text4 = document.createTextNode("Other");
-                        other.setAttribute("type","radio");
-                        other.setAttribute("value", "Other");
-                        other.setAttribute("name", "billType");
-                        document.getElementById("billExtend").appendChild(other);
-                        document.getElementById("billExtend").appendChild(text4);
-                    })
-                });
-
-
-            </script>
 
         </head>
         <body>
@@ -79,33 +50,138 @@ Error checking
         <main>
             <form id="ShoppingForm">
               <br>
-              Enter Date: <input type="text" name="firstname"><br>
-              <div id="billExtend">
-                  What type of purchase did you make?<br>
-                  <input type="radio" name="Store" value="Grocery" checked> Grocery<br>
-                  <input type="radio" name="Store" value="Transport"> Transport<br>
-                  <input type="radio" name="Store" value="Entertainment"> Entertainment <br>
-                  <input type="radio"  id="bills" name="Store" value="bills"> Bills<br>
-                  Other<input type="text" name="Store"><br>
-              </div>
+              Enter Date: <input type="date" id="myDate" placeholder="enter date""><br>
+             <p id ="demo"></p>
 
-              Enter the name of the store: <input type="text" name="lastname"><br>
+              Enter Type of purchase: <input type="text" id="purchase" placeholder="Bill Type: Tansport, Grocery, Entertianment"><br>
 
-              Enter the amount spent: <input type="text" name="lastname"><br>
+              <!-- <div id="billExtend">
+                 // What type of purchase did you make?<br>
 
-              What was the method of payment?<br>
+                  Enter Type of purchase: <input type="text" id="purchuse" placeholder="Bill Type: Tansport, Grocery, Entertianment"><br>
+                  <!-- <input type="radio"  name="Store" value="Grocery" checked> Grocery<br>
+                  <input type="radio"  name="Store" value="Transport"> Transport<br>
+                  <input type="radio"  name="Store" value="Entertainment"> Entertainment <br>
+                  <input type="radio" id="bills" name="Store" value="bills"> Bills<br>
+                  Other<input type="text" name="Store"><br> -->
+              </div>-->
+
+              Enter the name of the store: <input type="text" id = "title" placeholder = "StoreName"><br>
+
+              Enter the amount spent: <input type="text" id = "number" placeholder= "MoneySpent"><br>
+
+              Enter the payment type: <input type="text" id = "type" placeholder= "Credit, Debit, Cash, Paypal, GiftCard"><br>
+
+              <!-- What was the method of payment?<br>
               <input type="radio" name="Payment" value="Credit" checked>Credit<br>
               <input type="radio" name="Payment" value="Debit"> Debit<br>
               <input type="radio" name="Payment" value="Cash"> Cash <br>
               <input type="radio" name="Payment" value="Gift Card"> Gift Card<br>
-              Other: <input type="text" name="Payment"><br>
+              Other: <input type="text" name="Payment"><br> -->
 
-              <input type="submit" id="submit" name="submit" value="SUBMIT">
+              <button type="Submit" name="button" id ="submit">Submit</button>
+<div id ="msg">
+<pre></pre>
+</div>
+<div id ="gsm">
+<pre></pre>
+</div>
+<div id ="smg">
+<pre></pre>
+</div>
             </form>
-        </main>
+
+            </main>
+
+
         <footer>
-            <p>Created by Mike Henessay and Abigale Robson</h1>
+            <p>Created by Mike Henessay and Abigale Robson</p>
         </footer>
+        <script>
+                // window.addEventListener("DOMContentLoaded",()=>{
+                //
+                //     const bills = document.getElementById("bills");
+                //     //bills.style.backgroundColor = "white";
+                //
+                //     bills.addEventListener("click", e=>{
+                //         var question = document.createTextNode("What type of Bill was it?\n");
+                //         document.getElementById("billExtend").appendChild(question);
+                //
+                //         //create Insruance radio with correcposing text
+                //         var insurance = document.createElement("INPUT");
+                //         var text1 = document.createTextNode("Insurance");
+                //         insurance.setAttribute("type","radio");
+                //         insurance.setAttribute("value", "Insurance");
+                //         insurance.setAttribute("name", "billType");
+                //         document.getElementById("billExtend").appendChild(insurance);
+                //         document.getElementById("billExtend").appendChild(text1);
+                //
+                //
+                //         //create Utilities radio with correcposing text
+                //         var utilities = document.createElement("INPUT");
+                //         var text2 = document.createTextNode("Utilities");
+                //         utilities.setAttribute("type","radio");
+                //         utilities.setAttribute("value", "Utilities");
+                //         utilities.setAttribute("name", "billType");
+                //         document.getElementById("billExtend").appendChild(utilities);
+                //         document.getElementById("billExtend").appendChild(text2);
+                //
+                //
+                //         //create Rent radio with correcposing text
+                //         var rent = document.createElement("INPUT");
+                //         var text3 = document.createTextNode("Rent");
+                //         rent.setAttribute("type","radio");
+                //         rent.setAttribute("value", "Rent");
+                //         rent.setAttribute("name", "billType");
+                //         document.getElementById("billExtend").appendChild(rent);
+                //         document.getElementById("billExtend").appendChild(text3);
+                //
+                //
+                //         //create Other radio with correcposing text
+                //         var other = document.createElement("INPUT");
+                //         var text4 = document.createTextNode("Other");
+                //         other.setAttribute("type","radio");
+                //         other.setAttribute("value", "Other");
+                //         other.setAttribute("name", "billType");
+                //         document.getElementById("billExtend").appendChild(other);
+                //         document.getElementById("billExtend").appendChild(text4);
+                //     })
+                // });
+                function Datefuntction() {
+                    var date = document.getElementById("myDate").value;
+                    document.getElementById("demo").innerHTML = date;
+
+                }
+
+                let Groceries = [];
+
+                const addGrocery = (ev) => {
+                    ev.preventDefault();
+                    let Grocery = {
+                        date: document.getElementById('myDate').value,
+                        purchuse: document.getElementById('purchase').value,
+                        title: document.getElementById('title').value,
+                        amount: document.getElementById('number').value,
+                        paymenttype: document.getElementById('type').value
+
+                    }
+                    Groceries.push(Grocery);
+                    document.forms[0].reset();
+
+                    console.warn('added' , {Groceries} );
+                    let pre = document.querySelector('#msg pre');
+                    pre.textContent = '\n' + JSON.stringify(Groceries, '\t', 2);
+
+                    localStorage.setItem('GroceryList', JSON.stringify(Groceries));
+                }
+                document.addEventListener("DOMContentLoaded",()=>{
+                    document.getElementById('submit').addEventListener('click', addGrocery);
+
+                document.get
+
+        });
+
+        </script>
 
         </body>
     </html>
