@@ -84,14 +84,14 @@ input{
                 paymenttype: document.getElementById('type').value
             }
             Groceries.push(Grocery);
-
-//if field of text empty create message
+//Crate var to access values in Groceries
 var date = Grocery["date"];
 var purchase = Grocery["purchase"];
 var title = Grocery["title"];
 var number = Grocery["amount"];
 var type = Grocery["paymenttype"];
 
+//if field of text empty create message
     if(date == "" || purchase == "" || title == "" || number == "" || type == ""){
         var hM = document.createElement("H4");
         var errorM = document.createTextNode("Please enter all fields");
@@ -104,13 +104,25 @@ var type = Grocery["paymenttype"];
 //on click of submit button delete the messages
 var submit = document.getElementById("submit");
 submit.addEventListener("click", e=>{
-    var errorM = document.getElementById("errorM");
-    console.log(errorM);
-    errorM.parentNode.removeChild(errorM);
+    localStorage.date = JSON.stringify(date);
+    localStorage.purchase = JSON.stringify(purchase);
+    localStorage.title = JSON.stringify(title);
+    localStorage.number = JSON.stringify(number);
+    localStorage.type = JSON.stringify(type);
 });
 
-document.forms[0].reset();
+//Store values with JSON
+window.onload = function() {
+    if(localStorage.date && localStorage){
+        date = JSON.parse(localStorage.date);
+        purchase = JSON.parse(localStorage.purchase);
+        title = JSON.parse(localStorage.title);
+        number = JSON.parse(localStorage.number);
+        type = JSON.parse(localStorage.type);
+    }
+}
 
+document.forms[0].reset();
 
         console.warn('added' , {Groceries} );
         let pre = document.querySelector('#msg pre');
@@ -126,7 +138,6 @@ document.forms[0].reset();
 
             console.log("localStorage");
 
-            //decode JSON
 
 });
 </script>
@@ -138,9 +149,9 @@ document.forms[0].reset();
               and on what.</h4>
       </header>
       <main>
-          <form id="ShoppingForm">
+          <form name = "thisform" method ="GET" onsubmit=" "  action ="process.php" id="ShoppingForm">
             <br>
-            Enter Date: <input type="date" id="myDate" placeholder="enter date" method="GET"><br>
+            Enter Date: <input type="date" id="myDate" placeholder="enter date"><br>
            <p id ="demo"></p>
            <div id="dropDown">
            Was it a type of monthly bill: <br>Yes<input type="radio" name ="bill" id="yes" value="yes">
