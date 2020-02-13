@@ -1,111 +1,175 @@
-<!--
-Error checking
-    each field is submitted
+<!DOCTYPE html>
+  <html lang="en" dir="ltr">
+      <head>
+          <meta charset="utf-8">
+          <title>Remember Your Groceries</title>
 
-    Add/Remove a field:
-        Display none
-        OR use inner html- added content including tags to add another tag
-        OR create element
-    -->
+<style>
+  body{
+  background-color:#FFBFF8;
+  font-family:Courier, Verdana, Georgia ;
+  overflow: scroll;
+  padding:50px;
+  font-size: 20px;
+  align-items: center;
+}
+form{
+  background-color: #E3BBFA;
+  padding: 25px;
+  display:inline-block;
+  border-radius:25px;
+}
+input{
+  margin:10px;
+}
 
-    <!DOCTYPE html>
-    <html lang="en" dir="ltr">
-        <head>
-            <meta charset="utf-8">
-            <link rel="stylesheet" type="text/css" href="styles.css">
-            <title></title>
+#submit{
+  font-size:20px;
+  border-radius:7px;
+}
+</style>
 
-            <script>
-                window.addEventListener("DOMContentLoaded",()=>{
+<script>
+//if it is monthly bill enter
 
-                    const bills = document.getElementById("bills");
-                    //bills.style.backgroundColor = "white";
+    window.addEventListener("DOMContentLoaded",()=>{
+//when the yes is selected for monthly bill create input text type
+        const bills = document.getElementById("yes");
 
-                    bills.addEventListener("click", e=>{
-                        var question = document.createTextNode("What type of Bill was it?\n");
-                        document.getElementById("billExtend").appendChild(question);
+        bills.addEventListener("click", e=>{
+            var h = document.createElement("H4");
+            var question = document.createTextNode("When is the next payment due: ");
+            h.appendChild(question);
+            h.setAttribute("id", "t");
+            document.getElementById("dropDown").appendChild(h);
 
-                        //create Insruance radio with correcposing text
-                        var insurance = document.createElement("INPUT");
-                        var text1 = document.createTextNode("Insurance");
-                        insurance.setAttribute("type","radio");
-                        insurance.setAttribute("value", "Insurance");
-                        insurance.setAttribute("name", "billType");
-                        document.getElementById("billExtend").appendChild(insurance);
-                        document.getElementById("billExtend").appendChild(text1);
+            var billDate = document.createElement("INPUT");
+            billDate.setAttribute("type","date");
+            billDate.setAttribute("name", "billDate");
+            billDate.setAttribute("id", "billDate");
+            document.getElementById("dropDown").appendChild(billDate);
+            //store the value of the date now
+        })
 
+    });
+//delete billDate and h when no is selected in monthly bill selection
+    window.addEventListener("DOMContentLoaded", ()=>{
 
-                        //create Utilities radio with correcposing text
-                        var utilities = document.createElement("INPUT");
-                        var text2 = document.createTextNode("Utilities");
-                        utilities.setAttribute("type","radio");
-                        utilities.setAttribute("value", "Utilities");
-                        utilities.setAttribute("name", "billType");
-                        document.getElementById("billExtend").appendChild(utilities);
-                        document.getElementById("billExtend").appendChild(text2);
+         const deleteDate = document.getElementById("no");
+         deleteDate.addEventListener("click", e=>{
+             var d = document.getElementById("billDate");
+             d.parentNode.removeChild(d);
 
-
-                        //create Rent radio with correcposing text
-                        var rent = document.createElement("INPUT");
-                        var text3 = document.createTextNode("Rent");
-                        rent.setAttribute("type","radio");
-                        rent.setAttribute("value", "Rent");
-                        rent.setAttribute("name", "billType");
-                        document.getElementById("billExtend").appendChild(rent);
-                        document.getElementById("billExtend").appendChild(text3);
-
-
-                        //create Other radio with correcposing text
-                        var other = document.createElement("INPUT");
-                        var text4 = document.createTextNode("Other");
-                        other.setAttribute("type","radio");
-                        other.setAttribute("value", "Other");
-                        other.setAttribute("name", "billType");
-                        document.getElementById("billExtend").appendChild(other);
-                        document.getElementById("billExtend").appendChild(text4);
-                    })
-                });
+             var t = document.getElementById("t");
+             t.parentNode.removeChild(t);
+         })
+    });
 
 
-            </script>
+    function Datefuntction() {
+            var date = document.getElementById("myDate").value;
+            document.getElementById("demo").innerHTML = date;
 
-        </head>
-        <body>
-        <header>
-            <h1>Keep track of your purchases!<h1>
-            <h4>Fill in the form below to monitor how much you're spending,
-                and on what.</h4>
-        </header>
-        <main>
-            <form id="ShoppingForm">
-              <br>
-              Enter Date: <input type="text" name="firstname"><br>
-              <div id="billExtend">
-                  What type of purchase did you make?<br>
-                  <input type="radio" name="Store" value="Grocery" checked> Grocery<br>
-                  <input type="radio" name="Store" value="Transport"> Transport<br>
-                  <input type="radio" name="Store" value="Entertainment"> Entertainment <br>
-                  <input type="radio"  id="bills" name="Store" value="bills"> Bills<br>
-                  Other<input type="text" name="Store"><br>
-              </div>
+        }
 
-              Enter the name of the store: <input type="text" name="lastname"><br>
+        let Groceries = [];
 
-              Enter the amount spent: <input type="text" name="lastname"><br>
+        const addGrocery = (ev) => {
+            ev.preventDefault();
+            let Grocery = {
+                date: document.getElementById('myDate').value,
+                purchase: document.getElementById('purchase').value,
+                title: document.getElementById('title').value,
+                amount: document.getElementById('number').value,
+                paymenttype: document.getElementById('type').value
+            }
+            Groceries.push(Grocery);
 
-              What was the method of payment?<br>
-              <input type="radio" name="Payment" value="Credit" checked>Credit<br>
-              <input type="radio" name="Payment" value="Debit"> Debit<br>
-              <input type="radio" name="Payment" value="Cash"> Cash <br>
-              <input type="radio" name="Payment" value="Gift Card"> Gift Card<br>
-              Other: <input type="text" name="Payment"><br>
+//if field of text empty create message
+var date = Grocery["date"];
+var purchase = Grocery["purchase"];
+var title = Grocery["title"];
+var number = Grocery["amount"];
+var type = Grocery["paymenttype"];
 
-              <input type="submit" id="submit" name="submit" value="SUBMIT">
-            </form>
-        </main>
-        <footer>
-            <p>Created by Mike Henessay and Abigale Robson</h1>
-        </footer>
+    if(date == "" || purchase == "" || title == "" || number == "" || type == ""){
+        var hM = document.createElement("H4");
+        var errorM = document.createTextNode("Please enter all fields");
+        hM.appendChild(errorM);
+        hM.setAttribute("id", "errorM");
+        document.getElementById("error").appendChild(errorM);
+    }
 
-        </body>
-    </html>
+
+//on click of submit button delete the messages
+var submit = document.getElementById("submit");
+submit.addEventListener("click", e=>{
+    var errorM = document.getElementById("errorM");
+    console.log(errorM);
+    errorM.parentNode.removeChild(errorM);
+});
+
+document.forms[0].reset();
+
+
+        console.warn('added' , {Groceries} );
+        let pre = document.querySelector('#msg pre');
+        pre.textContent = '\n' + JSON.stringify(Groceries, '\t', 2);
+
+
+        localStorage.setItem('GroceryList', JSON.stringify(Groceries));
+
+
+        }
+        document.addEventListener("DOMContentLoaded",()=>{
+            document.getElementById('submit').addEventListener('click', addGrocery);
+
+            console.log("localStorage");
+
+            //decode JSON
+
+});
+</script>
+      </head>
+      <body>
+      <header>
+          <h1>Keep track of your purchases!<h1>
+          <h4>Fill in the form below to monitor how much you're spending,
+              and on what.</h4>
+      </header>
+      <main>
+          <form id="ShoppingForm">
+            <br>
+            Enter Date: <input type="date" id="myDate" placeholder="enter date" method="GET"><br>
+           <p id ="demo"></p>
+           <div id="dropDown">
+           Was it a type of monthly bill: <br>Yes<input type="radio" name ="bill" id="yes" value="yes">
+                No<input type="radio" name ="bill" id="no" value="no" default><br>
+            </div>
+            Enter Type of purchase: <input type="text" id="purchase" placeholder="Tansport, Grocery, Entertianment"><br>
+
+            Enter the name of the company: <input type="text" id = "title" placeholder = "StoreName"><br>
+
+            Enter the amount spent: <input type="text" id = "number" placeholder= "MoneySpent"><br>
+
+            Enter the payment type: <input type="text" id = "type" placeholder= "Credit, Debit, Cash, Paypal, GiftCard"><br>
+            <div id="error">
+            </div>
+            <button type="Submit" name="button" id ="submit">Submit</button>
+<div id ="msg">
+<pre></pre>
+</div>
+<div id ="gsm">
+<pre></pre>
+</div>
+<div id ="smg">
+<pre></pre>
+</div>
+          </form>
+          </main>
+      <footer>
+          <p>Created by Mike Henessay and Abigale Robson</p>
+      </footer>
+
+      </body>
+  </html>
